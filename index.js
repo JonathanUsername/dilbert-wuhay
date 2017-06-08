@@ -2,6 +2,18 @@ const Botkit = require('botkit');
 const request = require('request');
 const cheerio = require('cheerio');
 
+
+/*
+Requires:
+heroku config:set CLIENT_SECRET=foo
+heroku config:set VERIFICATION_TOKEN=bar
+heroku config:set CLIENT_ID=baz
+
+heroku sets its own port
+you might need to visit /login to auth
+*/
+
+
 if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT || !process.env.VERIFICATION_TOKEN) {
     console.log('Error: Specify CLIENT_ID, CLIENT_SECRET, VERIFICATION_TOKEN and PORT in environment');
     process.exit(1);
