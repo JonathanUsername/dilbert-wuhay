@@ -1,0 +1,10 @@
+{
+    "dependencies": {
+        "botkit": "^0.5.4",
+        "cheerio": "^1.0.0-rc.1",
+        "request": "^2.81.0"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
