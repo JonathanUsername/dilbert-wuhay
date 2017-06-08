@@ -20,9 +20,18 @@ if (!process.env.CLIENT_ID || !process.env.CLIENT_SECRET || !process.env.PORT ||
 }
 
 var config = {
-    require_delivery: true,
-    json_file_store: './db_slackbutton_slash_command/'
+    require_delivery: true
 };
+if (process.env.MONGOLAB_URI) {
+    var BotkitStorage = require('botkit-storage-mongo');
+    Object.assign(config,{
+        storage: BotkitStorage({mongoUri: process.env.MONGOLAB_URI}),
+    });
+} else {
+    Object.assign(config, {
+        json_file_store: './db_slackbutton_slash_command/',
+    });
+}
 
 var controller = Botkit.slackbot(config).configureSlackApp({clientId: process.env.CLIENT_ID, clientSecret: process.env.CLIENT_SECRET, scopes: ['commands']});
 
